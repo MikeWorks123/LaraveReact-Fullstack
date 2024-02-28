@@ -64,12 +64,13 @@ input:focus {
     padding: 0.5rem 0.75rem;
     font-size: 14px;
     border-radius: 4px;
+    background-color: rgba(7, 57, 131, 0.897)
 }
 .btn-add {
-    background-color: #00a762;
+    background-color: rgba(7, 57, 131, 0.897);
 }
 .btn-delete {
-    background-color: #088F8F;
+    background-color: rgba(7, 57, 131, 0.897);
 }
 
 .btn-logout {
@@ -180,7 +181,7 @@ table > tbody > tr > td {
 
 #defaultLayout aside {
     width: 240px;
-    background-color: #088F8F;
+    background-color: rgba(7, 57, 131, 0.897);
     padding: 1rem;
 }
 
@@ -282,3 +283,34 @@ table > tbody > tr > td {
     font-size: 1.25rem;
     margin-bottom: 10px;
 }
+
+.align-middle {
+    color: #FFFFFF;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  .center-text {
+    display: inline-block;
+  }
+
+  .align-line {
+    color: #212121;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .align-yes {
+    color: #212121;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }

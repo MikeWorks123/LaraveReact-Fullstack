@@ -8,6 +8,8 @@ import Dashboard from './views/Dashboard';
 import DefaultLayout from './components/DefaultLayout';
 import GuestLayout from './components/GuestLayout';
 import UserForm from './views/UserForm';
+import UserLayout from './components/UserLayout';
+import UserFeed from './views/UserFeed';
 
 const router = createBrowserRouter([
     {
@@ -50,7 +52,16 @@ const router = createBrowserRouter([
             },
         ]
     },
-    
+    {
+        path: '/',
+        element: <UserLayout />,
+        children: [
+            {
+                path: '/feed',
+                element: <UserFeed/>,
+            }
+        ]
+    },
     {
         path: '*',
         element: <NotFound />,

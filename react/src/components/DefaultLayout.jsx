@@ -31,17 +31,23 @@ export default function DefaultLayout() {
   return (
     <div id="defaultLayout">
       <aside>
-      <span class="align-middle"><center>ToolKit</center></span><br></br><br></br>
+      <span class="align-middle">
+        <strong class="center-text"><br></br>ToolKit</strong>
+      </span><br></br><br></br>
         <Link to="/dashboard">Dashboard</Link>
         <Link to="/users">Users</Link>
+        <Link to="/">Data Statistics</Link>
+        <Link to="/">Profile</Link>
+        <Link to="/">Comments</Link>
+        <Link to="/">Suggestions</Link>
       </aside>
       <div className="content">
         <header>
-          <div><strong>
-            Administrator</strong>
+          <div className="align-line"><strong>
+            Administrator </strong> &nbsp; Dashboard
           </div>
 
-          <div>
+          <div className="align-yes">
             {user.name} &nbsp; &nbsp;
             <a onClick={onLogout} className="btn-logout" href="#">Logout</a>
           </div>

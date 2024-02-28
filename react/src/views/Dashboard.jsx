@@ -1,23 +1,32 @@
 import React, { useState, useEffect } from 'react';
+import axiosClient from '../axios-client';
 
 const Dashboard = () => {
-  const [registeredAccounts, setRegisteredAccounts] = useState(null);
+  const [users, setUsers] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   const fetchRegisteredAccounts = async () => {
     try {
-      // Replace 'http://localhost:3000/users' with the actual endpoint to fetch registered accounts
-      const response = await fetch('http://localhost:3000/users');
-      const data = await response.json();
-      setRegisteredAccounts(data);
+      setLoading(true);
+
+      const response = await axiosClient.get('/users');
+      setUsers(response.data.data);
+
+      setLoading(false);
     } catch (error) {
       console.error('Error fetching registered accounts:', error);
+      setError('Error fetching data. Please try again.');
+      setLoading(false);
     }
   };
 
-  // useEffect to trigger data fetching when the component mounts
   useEffect(() => {
     fetchRegisteredAccounts();
-  }, []); // The empty dependency array ensures this effect runs only once on mount
+  }, []);
+
+  const numberOfIds = (users ? users.map(u => u.id).length : 0);
+
 
   return (
     <div className="container-fluid p-0">
@@ -33,27 +42,23 @@ const Dashboard = () => {
                 <div className="col">
                   <h5 className="card-title">Registered accounts</h5>
                 </div>
-
                 <div className="col-auto">
                   <div className="stat text-primary">
                     <i className="align-middle" data-feather="truck"></i>
                   </div>
                 </div>
               </div>
-              {registeredAccounts ? (
-                <>
-                  <h1 className="mt-1 mb-3">{registeredAccounts.total}</h1>
+              {loading ? (
+                <p>Loading...</p>
+              ) : (
+                <div>
+                  <h1 className="mt-1 mb-3">{numberOfIds}</h1>
                   <div className="mb-0">
-                    <span className="text-danger">
-                      {' '}
-                      <i className="mdi mdi-arrow-bottom-right"></i> -3.65%{' '}
-                    </span>
                     <span className="text-muted">Since last week</span>
                   </div>
-                </>
-              ) : (
-                <p>Loading registered account data...</p>
+                </div>
               )}
+              {error && <p className="text-danger">{error}</p>}
             </div>
           </div>
         </div>
@@ -65,20 +70,11 @@ const Dashboard = () => {
                 <div className="col">
                   <h5 className="card-title">Visitors</h5>
                 </div>
-
                 <div className="col-auto">
                   <div className="stat text-primary">
                     <i className="align-middle" data-feather="users"></i>
                   </div>
                 </div>
-              </div>
-              <h1 className="mt-1 mb-3">14,212</h1>
-              <div className="mb-0">
-                <span className="text-success">
-                  {' '}
-                  <i className="mdi mdi-arrow-bottom-right"></i> 5.25%{' '}
-                </span>
-                <span className="text-muted">Since last week</span>
               </div>
             </div>
           </div>
