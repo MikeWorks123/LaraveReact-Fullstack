@@ -9,6 +9,9 @@ export default function DefaultLayout() {
   if (!token) {
     return <Navigate to="/login"/>
   }
+  if(user.role !=='admin'){
+    return <Navigate to="/feed"/>
+  }
 
   const onLogout = ev => {
     ev.preventDefault()

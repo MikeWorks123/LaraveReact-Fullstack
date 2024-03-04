@@ -16,10 +16,10 @@ const router = createBrowserRouter([
         path: '/',
         element: <DefaultLayout />,
         children: [
-            {
-                path: '/',
-                element: <Navigate to="/dashboard" />
-            },
+            // {
+            //     path: '/',
+            //     element: <Navigate to="/dashboard" />
+            // },
             {
                 path: '/dashboard',
                 element: <Dashboard />,
@@ -56,6 +56,10 @@ const router = createBrowserRouter([
         path: '/',
         element: <UserLayout />,
         children: [
+            {
+                path: '/',
+                element: <Navigate to="/feed" />
+            },
             {
                 path: '/feed',
                 element: <UserFeed/>,
