@@ -1,6 +1,7 @@
 import { Navigate, Outlet } from "react-router-dom";
 import { useStateContext } from "../context/ContextProvider";
 import axiosClient from "../axios-client.js";
+import {useEffect} from "react";
 
 export default function UserLayout() {
   const {user, token, setUser, setToken, notification} = useStateContext();
@@ -27,17 +28,25 @@ export default function UserLayout() {
       })
   }
 
+  // show user data
+  useEffect(() => {
+    axiosClient.get('/user')
+      .then(({data}) => {
+         setUser(data)
+      })
+  }, [])
+
   return (
     <div id="guestLayout">
       <div className="content">
         <header>
           <div className="align-line">
-            Welcome &nbsp;
+            <strong>Bashed.com</strong> &nbsp;
           </div>
 
           <div className="align-yes">
-            {user.name} &nbsp; &nbsp;
-            <a onClick={onLogout} className="btn-logout" href="#">Logout</a>
+            <strong>{user.name}</strong> &nbsp; &nbsp;
+            <a onClick={onLogout} className="btn-logout" href="#"><strong>Logout</strong></a>
           </div>
         </header>
         <main>

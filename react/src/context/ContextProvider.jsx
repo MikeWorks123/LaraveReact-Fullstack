@@ -1,35 +1,41 @@
-import {createContext, useContext, useState} from "react";
+import { createContext, useContext, useState } from "react";
 
 const StateContext = createContext({
   currentUser: null,
   token: null,
   notification: null,
+  comments: [],
+  suggestions: [],
   setUser: () => {},
   setToken: () => {},
-  setNotification: () => {}
-})
+  setNotification: () => {},
+  setComments: () => {},
+  setSuggestions: () => {}
+});
 
-export const ContextProvider = ({children}) => {
+export const ContextProvider = ({ children }) => {
   const [user, setUser] = useState({});
   const [token, _setToken] = useState(localStorage.getItem('ACCESS_TOKEN'));
   const [notification, _setNotification] = useState('');
+  const [comments, setComments] = useState([]); // New state
+  const [suggestions, setSuggestions] = useState([]); // New state
 
-  const setToken = (token) => {
-    _setToken(token)
-    if (token) {
-      localStorage.setItem('ACCESS_TOKEN', token);
+  const setToken = (newToken) => {
+    _setToken(newToken);
+    if (newToken) {
+      localStorage.setItem('ACCESS_TOKEN', newToken);
     } else {
       localStorage.removeItem('ACCESS_TOKEN');
     }
-  }
+  };
 
-  const setNotification = message => {
+  const setNotification = (message) => {
     _setNotification(message);
 
     setTimeout(() => {
-      _setNotification('')
-    }, 5000)
-  }
+      _setNotification('');
+    }, 5000);
+  };
 
   return (
     <StateContext.Provider value={{
@@ -38,11 +44,15 @@ export const ContextProvider = ({children}) => {
       token,
       setToken,
       notification,
-      setNotification
+      setNotification,
+      comments,
+      setComments,
+      suggestions,
+      setSuggestions
     }}>
       {children}
     </StateContext.Provider>
   );
-}
+};
 
 export const useStateContext = () => useContext(StateContext);

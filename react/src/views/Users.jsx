@@ -29,11 +29,11 @@ export default function Users() {
     setLoading(true);
 
     // If there is no search query, reset the user list
-    if (!searchQuery) {
-      setUsers([]);
-      setLoading(false);
-      return;
-    }
+    // if (!searchQuery) {
+    //   setUsers([]);
+    //   setLoading(false);
+    //   return;
+    // }
 
     axiosClient.get('/users', {
       params: { search: searchQuery },

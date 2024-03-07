@@ -9,9 +9,9 @@ export default function DefaultLayout() {
   if (!token) {
     return <Navigate to="/login"/>
   }
-  if(user.role !=='admin'){
-    return <Navigate to="/feed"/>
-  }
+  // if(user.role !=='admin'){
+  //   return <Navigate to="/feed"/>
+  // }
 
   const onLogout = ev => {
     ev.preventDefault()
@@ -39,10 +39,10 @@ export default function DefaultLayout() {
       </span><br></br><br></br>
         <Link to="/dashboard">Dashboard</Link>
         <Link to="/users">Users</Link>
-        <Link to="/">Data Statistics</Link>
-        <Link to="/">Profile</Link>
-        <Link to="/">Comments</Link>
-        <Link to="/">Suggestions</Link>
+        <Link to="/data-statistics">Data Statistics</Link>
+        <Link to="/profile">Profile</Link>
+        <Link to="/comments-list">Comments</Link>
+        <Link to="/suggestions">Suggestions</Link>
       </aside>
       <div className="content">
         <header>

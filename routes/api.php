@@ -3,8 +3,9 @@
 use App\Http\Controllers\Api\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use PHPUnit\Framework\Attributes\Group;
 use App\Http\Controllers\Api\UserController;
+// use App\Http\Controllers\Api\CommentSuggestionController;
+use App\Http\Controllers\Api\CommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,7 +26,6 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::apiResource('/users', UserController::class);
 });
 
-
 Route::post('/signup', [AuthController::class, 'signup']);
 Route::post('/login', [AuthController::class, 'login']);
-Route::post('/submit-comments-suggestions', [AuthController::class, 'submitCommentsSuggestions']);
+Route::post('/comments', [CommentController::class, 'store']);

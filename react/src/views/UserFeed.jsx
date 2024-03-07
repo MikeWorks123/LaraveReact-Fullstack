@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { createRef, useEffect, useState } from "react";
 import axiosClient from "../axios-client.js";
 import { useStateContext } from "../context/ContextProvider.jsx";
@@ -8,37 +7,52 @@ export default function UserFeed() {
   const commentRef = createRef();
   const { user, setUser } = useStateContext();
   const [errors, setErrors] = useState(null);
-  const [successMessage, setSuccessMessage] = useState(null); // New state
+  const [successMessage, setSuccessMessage] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const { comments, setComments } = useStateContext();
 
   const onSubmit = (ev) => {
     ev.preventDefault();
+    setLoading(true);
+
     const payload = {
       comment: commentRef.current.value,
       suggestion: suggestionRef.current.value,
     };
 
     axiosClient
-      .post('/submit-comments-suggestions', payload)
+      .post('/comments', payload) // Updated endpoint for Laravel API
       .then((response) => {
         const { data } = response;
-        // Use the 'data' variable as needed
         console.log(data);
-      })      
+        setComments(data);
+        setErrors(null);
+        setSuccessMessage('Comment and suggestion submitted successfully!');
+        // Clear form fields
+        commentRef.current.value = '';
+        suggestionRef.current.value = '';
+      })
       .catch((error) => {
-        // Handle error
-        setSuccessMessage(null); // Clear success message on error
+        setSuccessMessage(null);
         const response = error.response;
         if (response && response.status === 422) {
           setErrors(response.data.errors);
         }
+      })
+      .finally(() => {
+        setLoading(false);
       });
   };
 
   useEffect(() => {
-    axiosClient.get('/user').then(({ data }) => {
-      setUser(data);
-    });
-  }, []);
+    // Clear success and error messages after 5 seconds
+    const timer = setTimeout(() => {
+      setSuccessMessage(null);
+      setErrors(null);
+    }, 5000);
+
+    return () => clearTimeout(timer);
+  }, [successMessage, errors]);
 
   return (
     <div className="profile-container">
@@ -57,8 +71,8 @@ export default function UserFeed() {
         <section className="profile-bio">
           <h2>About Me</h2>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
-            accumsan, est a dapibus ultrices, mauris lorem feugiat turpis.
+            This is an unfinished webpage and still working on more features but I would love to hear your Comments and Suggestion of what other Features should i add next 😊.<br></br><br></br>
+            I will be able to see your Comments and Suggestions on my Dashboard. Thank you!!
           </p>
         </section>
         <section className="profile-skills">
@@ -68,6 +82,13 @@ export default function UserFeed() {
             <li>CSS3</li>
             <li>JavaScript</li>
             <li>React</li>
+            <li>PHP</li>
+            <li>Laravel</li>
+            <li>Node</li>
+            <li>API</li>
+            <li>MVC</li>
+            <li>Python</li>
+            <li>Git/Github</li>
             {/* Add more skills as needed */}
           </ul>
         </section>
@@ -92,7 +113,9 @@ export default function UserFeed() {
 
         <input ref={commentRef} type="text" placeholder="Comment" />
         <input ref={suggestionRef} type="text" placeholder="Suggestion" />
-        <button className="btn btn-block">Submit</button>
+        <button className="btn btn-block" disabled={loading}>
+          {loading ? 'Submitting...' : 'Submit'}
+        </button>
       </form>
     </div>
   );
