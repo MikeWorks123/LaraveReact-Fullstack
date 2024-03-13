@@ -4,8 +4,8 @@ use App\Http\Controllers\Api\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\UserController;
-// use App\Http\Controllers\Api\CommentSuggestionController;
 use App\Http\Controllers\Api\CommentController;
+use App\Http\Controllers\Api\ContactController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,5 +27,7 @@ Route::middleware('auth:sanctum')->group(function(){
 });
 
 Route::post('/signup', [AuthController::class, 'signup']);
-Route::post('/login', [AuthController::class, 'login']);
+Route::post('/login', [AuthController::class, 'login'])->withoutMiddleware('auth');;
 Route::post('/comments', [CommentController::class, 'store']);
+Route::post('/contacts', [ContactController::class, 'store']);
+

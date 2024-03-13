@@ -6,6 +6,8 @@ import {useStateContext} from "../context/ContextProvider.jsx";
 export default function Signup() {
   const nameRef = createRef()
   const emailRef = createRef()
+  const occupationRef = createRef()
+  const addressRef = createRef()
   const passwordRef = createRef()
   const passwordConfirmationRef = createRef()
   const {setUser, setToken} = useStateContext()
@@ -17,6 +19,8 @@ export default function Signup() {
     const payload = {
       name: nameRef.current.value,
       email: emailRef.current.value,
+      occupation: occupationRef.current.value,
+      address: addressRef.current.value,
       password: passwordRef.current.value,
       password_confirmation: passwordConfirmationRef.current.value,
     }
@@ -48,6 +52,8 @@ export default function Signup() {
           }
           <input ref={nameRef} type="text" placeholder="Full Name"/>
           <input ref={emailRef} type="email" placeholder="Email Address"/>
+          <input ref={occupationRef} type="text" placeholder="Occupation"/>
+          <input ref={addressRef} type="text" placeholder="Address"/>
           <input ref={passwordRef} type="password" placeholder="Password"/>
           <input ref={passwordConfirmationRef} type="password" placeholder="Repeat Password"/>
           <button className="btn btn-block">Signup</button>

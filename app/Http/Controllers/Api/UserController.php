@@ -16,8 +16,18 @@ class UserController extends Controller
      */
     public function index()
     {
+        $searchQuery = request()->get('search');
+
+        $query = User::query()->orderBy('id', 'asc');
+
+        if ($searchQuery) {
+            // Adjust the query to include your search conditions
+            $query->where('name', 'like', '%' . $searchQuery . '%')
+                ->orWhere('email', 'like', '%' . $searchQuery . '%');
+        }
+
         return UserResource::collection(
-            User::query()->orderBy('id', 'asc')->paginate(100)
+            $query->paginate(500) // You can adjust the pagination limit here
         );
     }
 

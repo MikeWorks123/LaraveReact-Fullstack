@@ -141,7 +141,7 @@ table > tbody > tr > td {
 }
 
 .login-signup-form {
-    height: 100vh;
+    height: 75vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -195,7 +195,7 @@ table > tbody > tr > td {
 }
 
 #defaultLayout aside > a:hover {
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: rgba(2, 24, 58, 0.897);
 }
 
 #defaultLayout .content {
@@ -315,7 +315,7 @@ table > tbody > tr > td {
     text-align: center;
   }
 
-  #guestLayout header {
+  /* #guestLayout header {
     height: 80px;
     padding: 2rem 3rem;
     background-color: rgba(7, 33, 70, 0.5);
@@ -323,7 +323,67 @@ table > tbody > tr > td {
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
+} */
+#guestLayout {
+    display: flex;
+    transition: margin-left 0.3s ease-in-out;
+  }
+  
+  #guestLayout aside {
+    width: 240px;
+    background-color: rgba(2, 24, 58, 0.897);
+    padding: 1rem;
+    transition: width 0.3s ease-in-out;
+  }
+  
+  #guestLayout aside.closed {
+    width: 0;
+    overflow: hidden;
+  }
+  
+  #guestLayout aside > a {
+    display: block;
+    padding: 0.75rem 1rem;
+    border-radius: 6px;
+    color: white;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  
+  #guestLayout aside > a:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+  }
+  
+  #guestLayout .content {
+    flex: 1;
+    transition: margin-left 0.3s ease-in-out;
+    margin-left: 0; /* Adjusted to start with a closed sidebar */
+  }
+  
+  #guestLayout header {
+    height: 80px;
+    padding: 2rem 3rem;
+    background-color: #fffff0a4;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  #guestLayout main {
+    padding: 2rem;
+  }
+  
+  .toggle-btn {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+  }
+  
 
 .profile-container {
     max-width: 800px;
@@ -342,7 +402,11 @@ table > tbody > tr > td {
 .profile-picture {
     border-radius: 50%;
     margin-right: 20px;
+    width: 200px; /* Set the desired width for your circle */
+    height: 200px; /* Set the desired height for your circle */
+    object-fit: cover;
 }
+
 .user-details h2{
     color: #333;
     margin-bottom: 5px;
@@ -369,3 +433,74 @@ li {
     padding: 8px 15px;
     border-radius: 5px;
 }
+
+.comment-list {
+    margin: 20px auto;
+    max-width: 800px;
+  }
+  
+  .comment-item {
+    list-style: none;
+    margin-bottom: 30px;
+  }
+  
+  .message-box {
+    background: linear-gradient(45deg, #ffffff, #f0f0f0);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .message-box:hover {
+    transform: scale(1.03);
+  }
+  
+  .message-header {
+    background: linear-gradient(45deg, #3498db, #2980b9);
+    color: #fff;
+    padding: 25px;
+    font-weight: bold;
+    border-bottom: 2px solid #2577a8;
+    border-radius: 20px 20px 0 0;
+  }
+  
+  .message-content {
+    padding: 35px;
+    color: #2c3e50;
+    line-height: 1.8;
+  }
+  
+  .comment-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px;
+    background-color: #ecf0f1;
+    border-top: 2px solid #bdc3c7;
+    border-radius: 0 0 20px 20px;
+  }
+  
+  .comment-actions button {
+    background: linear-gradient(45deg, #3498db, #2980b9);
+    color: #fff;
+    padding: 18px 28px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .comment-actions button:hover {
+    background: linear-gradient(45deg, #2980b9, #2577a8);
+  }
+  
+  .comments-heading {
+    display: block;
+    margin-bottom: 20px;
+    font-size: 28px;
+    color: #3498db;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  

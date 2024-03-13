@@ -28,13 +28,6 @@ export default function Users() {
   const getUsers = () => {
     setLoading(true);
 
-    // If there is no search query, reset the user list
-    // if (!searchQuery) {
-    //   setUsers([]);
-    //   setLoading(false);
-    //   return;
-    // }
-
     axiosClient.get('/users', {
       params: { search: searchQuery },
     })
@@ -53,30 +46,29 @@ export default function Users() {
 
   const handleSearchSubmit = (event) => {
     event.preventDefault();
-    getUsers();
+    getUsers(); // Fetch users based on search query
   };
 
   return (
     <div>
-        <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
-            {/* Search Bar */}
-            <form onSubmit={handleSearchSubmit} style={{ display: 'flex', alignItems: 'center' }}>
-                <input
-                type="text"
-                placeholder="Search by ID, Name, or Email"
-                value={searchQuery}
-                onChange={handleSearchChange}
-                style={{ height: '30px' }}
-                />
-                &nbsp;
-                <button type="submit" className="btn-delete">
-                Search
-                </button>
-            </form>
-        </div>
+      <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
+        {/* Search Bar */}
+        <form onSubmit={handleSearchSubmit} style={{ display: 'flex', alignItems: 'center' }}>
+          <input
+            type="text"
+            placeholder="Search by ID, Name, or Email"
+            value={searchQuery}
+            onChange={handleSearchChange}
+            style={{ height: '30px' }}
+          />
+          &nbsp;
+          <button type="submit" className="btn-delete">
+            Search
+          </button>
+        </form>
+      </div>
 
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-
         <br></br><h1>Users</h1>
         <Link to="/users/new" className="btn-delete">Add New</Link>
       </div>

@@ -14,6 +14,8 @@ import CommentList from './views/CommentList';
 import SuggestionList from './views/SuggestionList';
 import Profile from './views/Profile';
 import DataStatistics from './views/DataStatistics';
+import AccountSettings from './views/AccountSettings';
+import ContactMe from './views/ContactMe';
 
 const router = createBrowserRouter([
     {
@@ -83,7 +85,15 @@ const router = createBrowserRouter([
             {
                 path: '/feed',
                 element: <UserFeed/>,
-            }
+            },
+            {
+                path: '/settings',
+                element: <AccountSettings/>,
+            },
+            {
+                path: '/contacts',
+                element: <ContactMe/>,
+            },
         ]
     },
     {

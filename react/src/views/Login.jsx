@@ -26,14 +26,14 @@ export default function Login() {
         setUser(user);
         setToken(token);
 
-        // Redirect based on user's role
-        if (role === "admin") {
-          navigate.push("/dashboard");
-        } else if (role === "user") {
-          navigate.push("/feed");
-        } else {
-          // Handle other roles if needed
-        }
+        // // Redirect based on user's role
+        // if (role === "admin") {
+        //   navigate.push("/dashboard");
+        // } else if (role === "user") {
+        //   navigate.push("/feed");
+        // } else {
+        //   // Handle other roles if needed
+        // }
       })
       .catch((err) => {
         const response = err.response;

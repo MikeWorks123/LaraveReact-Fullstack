@@ -10,7 +10,8 @@ const StateContext = createContext({
   setToken: () => {},
   setNotification: () => {},
   setComments: () => {},
-  setSuggestions: () => {}
+  setSuggestions: () => {},
+  setContacts: () => {}
 });
 
 export const ContextProvider = ({ children }) => {
@@ -19,6 +20,7 @@ export const ContextProvider = ({ children }) => {
   const [notification, _setNotification] = useState('');
   const [comments, setComments] = useState([]); // New state
   const [suggestions, setSuggestions] = useState([]); // New state
+  const [contacts, setContacts] = useState([]); // New state
 
   const setToken = (newToken) => {
     _setToken(newToken);
@@ -48,7 +50,9 @@ export const ContextProvider = ({ children }) => {
       comments,
       setComments,
       suggestions,
-      setSuggestions
+      setSuggestions,
+      contacts,
+      setContacts,
     }}>
       {children}
     </StateContext.Provider>

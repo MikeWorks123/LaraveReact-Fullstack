@@ -14,12 +14,12 @@ export default function UserFeed() {
   const onSubmit = (ev) => {
     ev.preventDefault();
     setLoading(true);
-
+  
     const payload = {
       comment: commentRef.current.value,
       suggestion: suggestionRef.current.value,
     };
-
+  
     axiosClient
       .post('/comments', payload) // Updated endpoint for Laravel API
       .then((response) => {
@@ -27,10 +27,9 @@ export default function UserFeed() {
         console.log(data);
         setComments(data);
         setErrors(null);
-        setSuccessMessage('Comment and suggestion submitted successfully!');
-        // Clear form fields
-        commentRef.current.value = '';
-        suggestionRef.current.value = '';
+        // setSuccessMessage('Comment and suggestion submitted successfully!');
+        // Clear form fields using the form reset method
+        ev.target.reset();
       })
       .catch((error) => {
         setSuccessMessage(null);
@@ -58,20 +57,20 @@ export default function UserFeed() {
     <div className="profile-container">
       <section className="profile-info">
           <img
-            src="https://placekitten.com/200/200" // Replace with your profile image URL
+            src="src/images/cat-transparent-gif-9.png" // Replace with your profile image URL
             alt="Profile"
             className="profile-picture"
           />
           <div className="user-details">
             <h2>{user.name}</h2>
-            <p>Web Developer</p>
-            <p>Location: City, Country</p>
+            <p>{user.occupation}</p>
+            <p>Location: {user.address}</p>
           </div>
         </section>
         <section className="profile-bio">
           <h2>About Me</h2>
           <p>
-            This is an unfinished webpage and still working on more features but I would love to hear your Comments and Suggestion of what other Features should i add next 😊.<br></br><br></br>
+            This is an unfinished webpage and still working on more features but I would love to hear your Comments and Suggestion on what other Features should i add next 😊.<br></br><br></br>
             I will be able to see your Comments and Suggestions on my Dashboard. Thank you!!
           </p>
         </section>

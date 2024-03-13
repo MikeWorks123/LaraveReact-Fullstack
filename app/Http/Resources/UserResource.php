@@ -19,6 +19,8 @@ class UserResource extends JsonResource
             'id' => $this -> id,
             'name' => $this -> name,
             'email' => $this -> email,
+            'occupation' => $this->occupation, // assuming these fields exist in the users table
+            'address' => $this->address,
             'created_at' => $this -> created_at->format('Y-m-d H:i:s'),
         ];
     }

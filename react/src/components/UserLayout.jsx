@@ -1,10 +1,11 @@
-import { Navigate, Outlet } from "react-router-dom";
+import { Link, Navigate, Outlet } from "react-router-dom";
 import { useStateContext } from "../context/ContextProvider";
 import axiosClient from "../axios-client.js";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 
 export default function UserLayout() {
   const {user, token, setUser, setToken, notification} = useStateContext();
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
 
   if (!token) {
@@ -17,6 +18,10 @@ export default function UserLayout() {
   //       return <Navigate to="/login" />;
   //     }
   // }
+
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
 
   const onLogout = ev => {
     ev.preventDefault()
@@ -38,10 +43,27 @@ export default function UserLayout() {
 
   return (
     <div id="guestLayout">
+      {/* <aside className={isSidebarOpen ? "open" : "closed"}> */}
+      <aside>
+        {/* Your sidebar content here */}
+        <h1 className="align-middle">
+          <strong className="center-text">
+            <br></br>ToolKit
+          </strong>
+        </h1>
+        <br></br>
+        <br></br>
+        <Link to="/feed">Home</Link>
+        <Link to="/settings">Account Settings</Link>
+        <Link to="/contacts">Lets Connect</Link>
+      </aside>
       <div className="content">
         <header>
           <div className="align-line">
-            <strong>Bashed.com</strong> &nbsp;
+          {/* <button className="toggle-btn" onClick={toggleSidebar}>
+            Toggle Sidebar
+          </button> */}
+            <strong>Get Bashed</strong> &nbsp;
           </div>
 
           <div className="align-yes">

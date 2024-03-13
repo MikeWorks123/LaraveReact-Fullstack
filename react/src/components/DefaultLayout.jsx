@@ -9,9 +9,9 @@ export default function DefaultLayout() {
   if (!token) {
     return <Navigate to="/login"/>
   }
-  // if(user.role !=='admin'){
-  //   return <Navigate to="/feed"/>
-  // }
+  if(user.role !=='admin'){
+    return <Navigate to="/feed"/>
+  }
 
   const onLogout = ev => {
     ev.preventDefault()
@@ -51,8 +51,8 @@ export default function DefaultLayout() {
           </div>
 
           <div className="align-yes">
-            {user.name} &nbsp; &nbsp;
-            <a onClick={onLogout} className="btn-logout" href="#">Logout</a>
+            <strong>{user.name}</strong> &nbsp; &nbsp;
+            <a onClick={onLogout} className="btn-logout" href="#"><strong>Logout</strong></a>
           </div>
         </header>
         <main>
