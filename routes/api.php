@@ -27,7 +27,8 @@ Route::middleware('auth:sanctum')->group(function(){
 });
 
 Route::post('/signup', [AuthController::class, 'signup']);
-Route::post('/login', [AuthController::class, 'login'])->withoutMiddleware('auth');;
+Route::post('/login', [AuthController::class, 'login']);
 Route::post('/comments', [CommentController::class, 'store']);
 Route::post('/contacts', [ContactController::class, 'store']);
-
+Route::get('/comments', [CommentController::class, 'index'])->withoutMiddleware('auth');
+Route::get('/contacts', [ContactController::class, 'index'])->withoutMiddleware('auth');

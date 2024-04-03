@@ -19,7 +19,8 @@ class ContactController extends Controller
     public function store(Request $request)
     {
         // Validation has already been performed at this point
-        $pdfPath = $request->file('pdf_file') ? $request->file('pdf_file')->store('pdfs', 'public') : null;
+        $pdfPath = $request->file('pdf_file') ? $request->file('pdf_file')->storeAs('src/pdfs', $request->file('pdf_file')->getClientOriginalName()) : null;
+
 
         Contact::create([
             'company' => $request->input('company'),
