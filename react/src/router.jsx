@@ -16,6 +16,7 @@ import Profile from './views/Profile';
 import DataStatistics from './views/DataStatistics';
 import AccountSettings from './views/AccountSettings';
 import ContactMe from './views/ContactMe';
+import DevInfo from './views/DeveInfo';
 
 const router = createBrowserRouter([
     {
@@ -27,7 +28,7 @@ const router = createBrowserRouter([
                 element: <Navigate to="/feed" />
             },
             {
-                path: '/dashboard',
+                path: '/admin-dashboard-authenticated',
                 element: <Dashboard />,
             },
             {
@@ -93,6 +94,10 @@ const router = createBrowserRouter([
             {
                 path: '/contacts',
                 element: <ContactMe/>,
+            },
+            {
+                path: '/about-mike',
+                element: <DevInfo/>,
             },
         ]
     },

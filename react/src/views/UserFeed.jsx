@@ -57,13 +57,13 @@ export default function UserFeed() {
     <div className="profile-container">
       <section className="profile-info">
           <img
-            src="src/images/cat-transparent-gif-9.png" // Replace with your profile image URL
+            src="src/images/nopic.jpg" // Replace with your profile image URL
             alt="Profile"
             className="profile-picture"
           />
           <div className="user-details">
             <h2>{user.name}</h2>
-            <p>{user.occupation}</p>
+            <p>Occupation: {user.occupation}</p>
             <p>Location: {user.address}</p>
           </div>
         </section>
@@ -110,8 +110,8 @@ export default function UserFeed() {
           </div>
         )}
 
-        <input ref={commentRef} type="text" placeholder="Comment" />
-        <input ref={suggestionRef} type="text" placeholder="Suggestion" />
+        <input ref={commentRef} type="text" placeholder="Comment" required/>
+        <input ref={suggestionRef} type="text" placeholder="Suggestion" required/>
         <button className="btn btn-block" disabled={loading}>
           {loading ? 'Submitting...' : 'Submit'}
         </button>

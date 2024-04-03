@@ -56,6 +56,7 @@ export default function UserLayout() {
         <Link to="/feed">Home</Link>
         <Link to="/settings">Account Settings</Link>
         <Link to="/contacts">Lets Connect</Link>
+        <Link to="/about-mike">About Mike</Link>
       </aside>
       <div className="content">
         <header>

@@ -7,7 +7,7 @@ export default function GuestLayout() {
 
   if (token) {
     if (user && user.role === "admin") {
-      return <Navigate to="/dashboard" />;
+      return <Navigate to="/admin-dashboard-authenticated" />;
     } else {
       return <Navigate to="/feed" />;
     }

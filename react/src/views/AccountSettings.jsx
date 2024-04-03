@@ -1,4 +1,5 @@
 import { useState, useRef } from 'react';
+// import './AccountSettings.css'; // Import your CSS file for styling
 
 export default function AccountSettings() {
     // State variables for form fields
@@ -25,12 +26,11 @@ export default function AccountSettings() {
     };
 
     return (
-        <div>
+        <div className="account-settings-container">
             <h1><center><strong>Account Settings</strong></center></h1>
             <form onSubmit={handleSubmit}>
-            <div>
-                <br/>
-                    <label htmlFor="profilePicture">Profile Picture:</label>
+                <div className="profile-picture-container">
+                    <label htmlFor="profilePicture" className="profile-picture-label">Profile Picture:</label>
                     <input
                         type="file"
                         id="profilePicture"
@@ -43,80 +43,86 @@ export default function AccountSettings() {
                             <img
                                 src={URL.createObjectURL(profilePicture)}
                                 alt="Profile Preview"
-                                className="rounded-circle"
+                                className="profile-picture-img"
                             />
                         </div>
                     )}
                 </div>
 
                 {/* About Me */}
-                <div>
+                <div className="form-group">
                     <label htmlFor="aboutMe">About Me:</label><br/>
                     <textarea
                         id="aboutMe"
                         value={aboutMe}
                         onChange={(e) => setAboutMe(e.target.value)}
+                        className="form-control"
                     ></textarea>
-                </div><br/><br/>
+                </div>
 
                 {/* Name */}
-                <div>
+                <div className="form-group">
                     <label htmlFor="name">Name:</label>
                     <input
                         type="text"
                         id="name"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
+                        className="form-control"
                     />
                 </div>
 
                 {/* Email */}
-                <div>
+                <div className="form-group">
                     <label htmlFor="email">Email:</label>
                     <input
                         type="email"
                         id="email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
+                        className="form-control"
                     />
                 </div>
 
                 {/* Occupation */}
-                <div>
+                <div className="form-group">
                     <label htmlFor="occupation">Occupation:</label>
                     <input
                         type="text"
                         id="occupation"
                         value={occupation}
                         onChange={(e) => setOccupation(e.target.value)}
+                        className="form-control"
                     />
                 </div>
 
                 {/* Address */}
-                <div>
+                <div className="form-group">
                     <label htmlFor="address">Address:</label>
                     <input
                         type="text"
                         id="address"
                         value={address}
                         onChange={(e) => setAddress(e.target.value)}
+                        className="form-control"
                     />
                 </div>
 
                 {/* Password */}
-                <div>
+                <div className="form-group">
                     <label htmlFor="password">Password:</label>
                     <input
                         type="password"
                         id="password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
+                        className="form-control"
                     />
                 </div>
 
                 {/* Submit Button */}
-                <div>
-                    <button type="submit">Save Changes</button>
+                <div className="form-group">
+                    <button type="submit" className="btn btn-primary">Save Changes</button>
                 </div>
             </form>
         </div>

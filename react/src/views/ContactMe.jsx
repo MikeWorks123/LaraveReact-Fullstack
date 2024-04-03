@@ -63,12 +63,12 @@ export default function ContactMe() {
       }, [successMessage, errors]);
 
   return (
-    <div>
-      <h1><center>
+    <div className="contact-container">
+      <h1 className="heading"><center>
         <strong>Kindly Drop your details 😊</strong>
       </center>
       </h1>
-      <form onSubmit={onSubmit}>
+      <form onSubmit={onSubmit} className="form-group">
         {/* show errors */}
         {errors && (
           <div className="alert">
@@ -84,38 +84,40 @@ export default function ContactMe() {
             <p>{successMessage}</p>
           </div>
         )}
-        <label>
-          Company Name:
-          <input type="text" ref={companyRef}/>
-        </label>
-        <label>
-          Address:
-          <input type="text" ref={addressRef} />
-        </label>
-        <label>
-          Contact Person:
-          <input type="text" ref={contactpersonRef}/>
-        </label>
-{/* 
-        <label>
-          Add Message (Optional):
-          <input
-            type="text"
-            name="message"
-            ref={contactpersonRef}
-          />
-        </label> */}
-        <label>
-          Phone Number:
-          <input type="tel" ref={phonenumberRef} />
-        </label>
-        <label>
-          Attach PDF (optional):
-          <input type="file" accept=".pdf" ref={fileRef}/>
-        </label>
-        <button className="btn btn-block" disabled={loading}>
-          {loading ? 'Submitting...' : 'Submit'}
-        </button>
+        <div>
+            <label>
+              Company Name:
+              <input className="input" type="text" ref={companyRef} required/>
+            </label>
+            <label>
+              Address:
+              <input className="input" type="text" ref={addressRef} required/>
+            </label>
+            <label>
+              Contact Person:
+              <input className="input" type="text" ref={contactpersonRef} required/>
+            </label>
+    {/* 
+            <label>
+              Add Message (Optional):
+              <input
+                type="text"
+                name="message"
+                ref={contactpersonRef}
+              />
+            </label> */}
+            <label>
+              Phone Number:
+              <input className="input" type="tel" ref={phonenumberRef} required/>
+            </label>
+            <label>
+              Attach PDF (optional):
+              <input className="input" type="file" accept=".pdf" ref={fileRef}/>
+            </label>
+            <button className="btn btn-block" disabled={loading}>
+              {loading ? 'Submitting...' : 'Submit'}
+            </button>
+        </div>
       </form>
     </div>
   );

@@ -22,7 +22,7 @@ export default function SuggestionList() {
     <div className="comment-list">
       <center><strong className="comments-heading">Suggestions :)</strong></center><br></br><br></br>
       {loading ? (
-        <p>Loading comments...</p>
+        <p>Loading suggestions...</p>
       ) : (
         <ul>
           {comments.map(comment => (
